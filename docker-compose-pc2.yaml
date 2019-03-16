@@ -1,0 +1,62 @@
+networks:
+      dstar-net:
+        external:
+            name: dstar-net
+version: '2'
+
+services:
+
+  peer1.org1.dstar.com:
+    container_name: peer1.org1.dstar.com
+    image: hyperledger/fabric-peer
+    environment:
+      - FABRIC_LOGGING_SPEC=debug
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB 
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1:6984 
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME= 
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_PEER_ADDRESSAUTODETECT=true 
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock 
+      - CORE_PEER_NETWORKID=peer1.org1.dstar.com 
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/
+      - CORE_NEXT=true 
+      - CORE_PEER_ENDORSER_ENABLED=true 
+      - CORE_PEER_ID=peer1.org1.dstar.com 
+      - CORE_PEER_PROFILE_ENABLED=true 
+      - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer.dstar.com:7050 
+      - CORE_PEER_GOSSIP_IGNORESECURITY=true 
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.dstar.com:7051 
+      - CORE_PEER_TLS_ENABLED=false 
+      - CORE_PEER_GOSSIP_USELEADERELECTION=false 
+      - CORE_PEER_GOSSIP_ORGLEADER=true 
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=dstar-net 
+
+    command: peer node start
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer1.org1.dstar.com/msp:/etc/hyperledger/msp/peer
+        #- ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer1.org1.dstar.com/tls:/etc/hyperledger/fabric/tls
+        - ./channel-artifacts/:/etc/hyperledger/configtx
+    ports:
+      - 7051:7051
+      - 7053:7053
+
+
+
+    depends_on:
+      - couchdb1
+    networks:
+      - dstar-net
+
+  couchdb1:
+    container_name: couchdb1
+    image: hyperledger/fabric-couchdb
+    environment: 
+      - COUCHDB_USER= 
+      - COUCHDB_PASSWORD=
+    ports:
+      - 6984:6984
+    networks:
+      - dstar-net

@@ -1,0 +1,2 @@
+[34m2019-03-15 10:28:34.574 UTC [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+Error: genesis block file not found open .block: no such file or directory
