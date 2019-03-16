@@ -7,106 +7,105 @@ networks:
         external:
             name: dstar-net
 version: '2'
-
 services:
 
-  # ca.dstar.com:
-  #   container_name: ca.dstar.com
-  #   image: hyperledger/fabric-ca
-  #   environment:
-  #     - FABRIC_LOGGING_SPEC=debug
-  #     - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
-  #     - FABRIC_CA_SERVER_CA_NAME=ca.dstar.com 
-  #     - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org1.dstar.com-cert.pem
-  #     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/6a4cc70aade05c2d4f2e8adc96b1281937bd6190e70c74d446411031f05c9b4d_sk
-  #     - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=dstar-net
-  #   volumes:
-  #     - ./crypto-config/peerOrganizations/org1.dstar.com/ca/:/etc/hyperledger/fabric-ca-server-config
-  #   ports:
-  #     - 7054:7054
-  #   command: sh -c 'fabric-ca-server start -b admin:adminpw'
-  #   networks:
-  #     - dstar-net
+  ca.dstar.com:
+    container_name: ca.dstar.com
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_LOGGING_SPEC=debug
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.dstar.com 
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org1.dstar.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/6a4cc70aade05c2d4f2e8adc96b1281937bd6190e70c74d446411031f05c9b4d_sk
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=dstar-net
+    volumes:
+      - ./crypto-config/peerOrganizations/org1.dstar.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    ports:
+      - 7054:7054
+    command: sh -c 'fabric-ca-server start -b admin:adminpw'
+    networks:
+      - dstar-net
 
 
-  # orderer.dstar.com:
-  #   container_name: orderer.dstar.com
-  #   image: hyperledger/fabric-orderer:$IMAGE_TAG
-  #   environment:
-  #     - FABRIC_LOGGING_SPEC=debug
-  #     - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-  #     - ORDERER_GENERAL_LISTENPORT=7050
-  #     - ORDERER_GENERAL_GENESISMETHOD=file
-  #     - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-  #     - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-  #     - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
-  #     - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=dstar-net
-  #     - ORDERER_GENERAL_TLS_ENABLED=false
-  #   working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
-  #   command: orderer
-  #   volumes:
-  #     - ./channel-artifacts/:/etc/hyperledger/configtx
-  #     - ./crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/:/etc/hyperledger/msp/orderer
-  #     - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/:/etc/hyperledger/msp/peerOrg1
-  #   #  - ./crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/tls/:/var/hyperledger/orderer/tls
-  #   ports:
-  #     - 7050:7050
-  #   networks:
-  #     - dstar-net
+  orderer.dstar.com:
+    container_name: orderer.dstar.com
+    image: hyperledger/fabric-orderer:$IMAGE_TAG
+    environment:
+      - FABRIC_LOGGING_SPEC=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_LISTENPORT=7050
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=dstar-net
+      - ORDERER_GENERAL_TLS_ENABLED=false
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
+    command: orderer
+    volumes:
+      - ./channel-artifacts/:/etc/hyperledger/configtx
+      - ./crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/:/etc/hyperledger/msp/orderer
+      - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/:/etc/hyperledger/msp/peerOrg1
+    #  - ./crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/tls/:/var/hyperledger/orderer/tls
+    ports:
+      - 7050:7050
+    networks:
+      - dstar-net
   
-  # couchdb0:
-  #   container_name: couchdb0
-  #   image: hyperledger/fabric-couchdb
-  #   environment: 
-  #     - COUCHDB_USER= 
-  #     - COUCHDB_PASSWORD=
-  #   ports:
-  #     - 5984:5984
-  #   networks:
-  #     - dstar-net
+  couchdb0:
+    container_name: couchdb0
+    image: hyperledger/fabric-couchdb
+    environment: 
+      - COUCHDB_USER= 
+      - COUCHDB_PASSWORD=
+    ports:
+      - 5984:5984
+    networks:
+      - dstar-net
 
-  # peer0.org1.dstar.com:
-  #   container_name: peer0.org1.dstar.com
-  #   image: hyperledger/fabric-peer
-  #   environment:
-  #     - FABRIC_LOGGING_SPEC=debug
-  #     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB 
-  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984 
-  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME= 
-  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
-  #     - CORE_PEER_ADDRESSAUTODETECT=true 
-  #     - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock 
-  #     - CORE_PEER_NETWORKID=peer0.org1.dstar.com 
-  #     - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/
-  #     - CORE_NEXT=true 
-  #     - CORE_PEER_ENDORSER_ENABLED=true 
-  #     - CORE_PEER_ID=peer0.org1.dstar.com 
-  #     - CORE_PEER_PROFILE_ENABLED=true 
-  #     - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer.dstar.com:7050 
-  #     - CORE_PEER_GOSSIP_IGNORESECURITY=true 
-  #     - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.dstar.com:7051 
-  #     - CORE_PEER_TLS_ENABLED=false 
-  #     - CORE_PEER_GOSSIP_USELEADERELECTION=false 
-  #     - CORE_PEER_GOSSIP_ORGLEADER=true 
-  #     - CORE_PEER_LOCALMSPID=Org1MSP
-  #     - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=dstar-net 
+  peer0.org1.dstar.com:
+    container_name: peer0.org1.dstar.com
+    image: hyperledger/fabric-peer
+    environment:
+      - FABRIC_LOGGING_SPEC=debug
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB 
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984 
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME= 
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_PEER_ADDRESSAUTODETECT=true 
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock 
+      - CORE_PEER_NETWORKID=peer0.org1.dstar.com 
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/
+      - CORE_NEXT=true 
+      - CORE_PEER_ENDORSER_ENABLED=true 
+      - CORE_PEER_ID=peer0.org1.dstar.com 
+      - CORE_PEER_PROFILE_ENABLED=true 
+      - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer.dstar.com:7050 
+      - CORE_PEER_GOSSIP_IGNORESECURITY=true 
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.dstar.com:7051 
+      - CORE_PEER_TLS_ENABLED=false 
+      - CORE_PEER_GOSSIP_USELEADERELECTION=false 
+      - CORE_PEER_GOSSIP_ORGLEADER=true 
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=dstar-net 
 
-  #   command: peer node start
-  #   working_dir: /opt/gopath/src/github.com/hyperledger/fabric
-  #   volumes:
-  #       - /var/run/:/host/var/run/
-  #       - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/msp:/etc/hyperledger/msp/peer
-  #       - ./crypto-config/peerOrganizations/org1.dstar.com/users:/etc/hyperledger/msp/users
-  #       #- ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/tls:/etc/hyperledger/fabric/tls
-  #       - ./channel-artifacts/:/etc/hyperledger/configtx
-  #   ports:
-  #     - 7051:7051
-  #     - 7053:7053
-  #   depends_on: 
-  #     - couchdb0
-  #     - orderer.dstar.com
-  #   networks:
-  #     - dstar-net
+    command: peer node start
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/msp:/etc/hyperledger/msp/peer
+        - ./crypto-config/peerOrganizations/org1.dstar.com/users:/etc/hyperledger/msp/users
+        #- ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/tls:/etc/hyperledger/fabric/tls
+        - ./channel-artifacts/:/etc/hyperledger/configtx
+    ports:
+      - 7051:7051
+      - 7053:7053
+    depends_on: 
+      - couchdb0
+      - orderer.dstar.com
+    networks:
+      - dstar-net
 
   cli:
     container_name: cli
