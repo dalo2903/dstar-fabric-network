@@ -24,7 +24,7 @@ services:
       - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/89fdad2fc509809820994628a84eaf4586730c7ffbb945ecbddbe118567fdd10_sk
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=dstar-net
     volumes:
-      - ./crypto-config/peerOrganizations/org1.dstar.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ../crypto-config/peerOrganizations/org1.dstar.com/ca/:/etc/hyperledger/fabric-ca-server-config
     ports:
       - 7054:7054
     command: sh -c 'fabric-ca-server start -b admin:adminpw'
@@ -65,11 +65,11 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
     command: orderer
     volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/tls:/var/hyperledger/orderer/tls
+      - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ../crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/msp:/var/hyperledger/orderer/msp
+      - ../crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/tls:/var/hyperledger/orderer/tls
       - orderer.dstar.com:/var/hyperledger/production/orderer
-    #  - ./crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/tls/:/var/hyperledger/orderer/tls
+    #  - ../crypto-config/ordererOrganizations/dstar.com/orderers/orderer.dstar.com/tls/:/var/hyperledger/orderer/tls
     ports:
       - 7050:7050
     networks:
@@ -114,8 +114,8 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     volumes:
         - /var/run/:/host/var/run/
-        - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/msp:/etc/hyperledger/fabric/msp
-        - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/tls:/etc/hyperledger/fabric/tls
+        - ../crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/org1.dstar.com/peers/peer0.org1.dstar.com/tls:/etc/hyperledger/fabric/tls
         - peer0.org1.dstar.com:/var/hyperledger/production
 
     ports:
@@ -159,10 +159,10 @@ services:
       - orderer.dstar.com
     volumes:
       - /var/run/:/host/var/run/
-      - ./chaincode/:/opt/gopath/src/github.com/chaincode
-      - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
-      - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
-      - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+      - ../chaincode/:/opt/gopath/src/github.com/chaincode
+      - ../crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+      - ../scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
+      - ../channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     networks:
       - dstar-net
 
@@ -193,8 +193,8 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     volumes:
         - /var/run/:/host/var/run/
-        - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer1.org1.dstar.com/msp:/etc/hyperledger/fabric/msp
-        - ./crypto-config/peerOrganizations/org1.dstar.com/peers/peer1.org1.dstar.com/tls:/etc/hyperledger/fabric/tls
+        - ../crypto-config/peerOrganizations/org1.dstar.com/peers/peer1.org1.dstar.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/org1.dstar.com/peers/peer1.org1.dstar.com/tls:/etc/hyperledger/fabric/tls
         - peer1.org1.dstar.com:/var/hyperledger/production
     ports:
       - 8051:8051

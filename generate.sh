@@ -1,6 +1,6 @@
 
 export PATH=${PWD}/bin:$PATH
-export FABRIC_CFG_PATH=${PWD}
+export FABRIC_CFG_PATH=${PWD}/configs
 
 # Ask user for confirmation to proceed
 function askProceed () {
@@ -33,7 +33,7 @@ function generateCerts (){
   if [ -d "crypto-config" ]; then
     rm -rf crypto-config
   fi
-  cryptogen generate --config=./crypto-config.yaml
+  cryptogen generate --config=configs/crypto-config.yaml
   if [ "$?" -ne 0 ]; then
     echo "Failed to generate certificates..."
     exit 1
