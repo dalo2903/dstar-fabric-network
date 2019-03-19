@@ -38,7 +38,6 @@ setGlobals () {
 		if [ $1 -eq 0 ]; then
 			CORE_PEER_ADDRESS=peer0.org1.dstar.com:7051
 		else
-			CORE_PEER_ADDRESS=peer1.org1.dstar.com:7051
 			CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp
 		fi
 	fi
@@ -50,7 +49,7 @@ createChannel() {
 	setGlobals 0
 
 
-	peer channel create -o orderer.dstar.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/channel.tx >&log.txt
+	peer channel create -o orderer.dstar.com:7050 -c $CHANNEL_NAME -f ../channel-artifacts/channel.tx >&log.txt
 	res=$?
 	cat log.txt
 	verifyResult $res "Channel creation failed"
@@ -61,7 +60,7 @@ createChannel() {
 updateAnchorPeers() {
 	PEER=$1
   	setGlobals $PEER
-  	peer channel update -o orderer.dstar.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/${CORE_PEER_LOCALMSPID}anchors.tx >&log.txt
+  	peer channel update -o orderer.dstar.com:7050 -c $CHANNEL_NAME -f ../channel-artifacts/${CORE_PEER_LOCALMSPID}anchors.tx >&log.txt
 	res=$?
 	cat log.txt
 	verifyResult $res "Anchor peer update failed"
@@ -87,7 +86,7 @@ joinWithRetry () {
 }
 
 joinChannel () {
-	for ch in 0 1; do
+	for ch in 1; do
 		setGlobals $ch
 		joinWithRetry $ch
 		echo "===================== PEER$ch joined on the channel \"$CHANNEL_NAME\" ===================== "
@@ -99,7 +98,7 @@ joinChannel () {
 installChaincode () {
 	PEER=$1
 	setGlobals $PEER
-	peer chaincode install -n mycc -v 1.0 -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02 >&log.txt
+	peer chaincode install -n mycc -v 1.0 -l node -p /opt/gopath/src/github.com/chaincode/chaincode_example02/node/ >&log.txt
 	res=$?
 	cat log.txt
         verifyResult $res "Chaincode installation on remote peer PEER$PEER has Failed"
@@ -164,7 +163,7 @@ chaincodeInvoke () {
 
 ## Create channel
 echo "Creating channel..."
-createChannel
+#createChannel
 
 ## Join all the peers to the channel
 echo "Having all peers join the channel..."
@@ -177,24 +176,24 @@ updateAnchorPeers 0
 ## Install chaincode on Peer0/Org1 and Peer2/Org2
 echo "Installing chaincode on org1/peer0..."
 installChaincode 0
-echo "Install chaincode on org2/peer2..."
+echo "Install chaincode on org1/peer1..."
 installChaincode 1
 
-# #Instantiate chaincode on Peer2/Org2
-# echo "Instantiating chaincode on org1/peer0..."
-# instantiateChaincode 0
+#Instantiate chaincode on Peer2/Org2
+echo "Instantiating chaincode on org1/peer0..."
+instantiateChaincode 0
 
-# #Query on chaincode on Peer0/Org1
-# echo "Querying chaincode on org1/peer0..."
-# chaincodeQuery 0 100
+#Query on chaincode on Peer0/Org1
+echo "Querying chaincode on org1/peer0..."
+chaincodeQuery 0 100
 
-# #Invoke on chaincode on Peer0/Org1
-# echo "Sending invoke transaction on org1/peer0..."
-# chaincodeInvoke 0
+#Invoke on chaincode on Peer0/Org1
+echo "Sending invoke transaction on org1/peer0..."
+chaincodeInvoke 0
 
-# #Query on chaincode on Peer1/Org1, check if the result is 90
-# echo "Querying chaincode on org2/peer3..."
-# chaincodeQuery 1 90
+#Query on chaincode on Peer1/Org1, check if the result is 90
+echo "Querying chaincode on org2/peer3..."
+chaincodeQuery 1 90
 
 echo
 echo "========= All GOOD, BMHN execution completed =========== "

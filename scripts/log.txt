@@ -1,8 +1,114 @@
-panic: Fatal error when initializing core config : Error when reading core config file: Unsupported Config Type ""
-
-
-goroutine 1 [running]:
-panic(0xbb8480, 0xc42020f330)
-	/opt/go/go1.7.5.linux.amd64/src/runtime/panic.go:500 +0x1a1
-main.main()
-	/w/workspace/fabric-binaries-x86_64/gopath/src/github.com/hyperledger/fabric/peer/main.go:94 +0x852
+[36m2019-03-18 13:56:12.364 UTC [viperutil] getKeysRecursively -> DEBU 001[0m Found map[string]interface{} value for peer.BCCSP
+[36m2019-03-18 13:56:12.364 UTC [viperutil] getKeysRecursively -> DEBU 002[0m Found map[string]interface{} value for peer.BCCSP.PKCS11
+[36m2019-03-18 13:56:12.364 UTC [viperutil] unmarshalJSON -> DEBU 003[0m Unmarshal JSON: value is not a string: <nil>
+[36m2019-03-18 13:56:12.365 UTC [viperutil] getKeysRecursively -> DEBU 004[0m Found real value for peer.BCCSP.PKCS11.Security setting to <nil> <nil>
+[36m2019-03-18 13:56:12.365 UTC [viperutil] getKeysRecursively -> DEBU 005[0m Found map[string]interface{} value for peer.BCCSP.PKCS11.FileKeyStore
+[36m2019-03-18 13:56:12.365 UTC [viperutil] unmarshalJSON -> DEBU 006[0m Unmarshal JSON: value is not a string: <nil>
+[36m2019-03-18 13:56:12.378 UTC [viperutil] getKeysRecursively -> DEBU 007[0m Found real value for peer.BCCSP.PKCS11.FileKeyStore.KeyStore setting to <nil> <nil>
+[36m2019-03-18 13:56:12.380 UTC [viperutil] unmarshalJSON -> DEBU 008[0m Unmarshal JSON: value is not a string: <nil>
+[36m2019-03-18 13:56:12.380 UTC [viperutil] getKeysRecursively -> DEBU 009[0m Found real value for peer.BCCSP.PKCS11.Library setting to <nil> <nil>
+[36m2019-03-18 13:56:12.380 UTC [viperutil] unmarshalJSON -> DEBU 00a[0m Unmarshal JSON: value is not a string: <nil>
+[36m2019-03-18 13:56:12.380 UTC [viperutil] getKeysRecursively -> DEBU 00b[0m Found real value for peer.BCCSP.PKCS11.Label setting to <nil> <nil>
+[36m2019-03-18 13:56:12.381 UTC [viperutil] unmarshalJSON -> DEBU 00c[0m Unmarshal JSON: value is not a string: <nil>
+[36m2019-03-18 13:56:12.381 UTC [viperutil] getKeysRecursively -> DEBU 00d[0m Found real value for peer.BCCSP.PKCS11.Pin setting to <nil> <nil>
+[36m2019-03-18 13:56:12.381 UTC [viperutil] unmarshalJSON -> DEBU 00e[0m Unmarshal JSON: value is not a string: <nil>
+[36m2019-03-18 13:56:12.381 UTC [viperutil] getKeysRecursively -> DEBU 00f[0m Found real value for peer.BCCSP.PKCS11.Hash setting to <nil> <nil>
+[36m2019-03-18 13:56:12.381 UTC [viperutil] unmarshalJSON -> DEBU 010[0m Unmarshal JSON: value cannot be unmarshalled: invalid character 'S' looking for beginning of value
+[36m2019-03-18 13:56:12.381 UTC [viperutil] getKeysRecursively -> DEBU 011[0m Found real value for peer.BCCSP.Default setting to string SW
+[36m2019-03-18 13:56:12.381 UTC [viperutil] getKeysRecursively -> DEBU 012[0m Found map[string]interface{} value for peer.BCCSP.SW
+[36m2019-03-18 13:56:12.382 UTC [viperutil] unmarshalJSON -> DEBU 013[0m Unmarshal JSON: value cannot be unmarshalled: invalid character 'S' looking for beginning of value
+[36m2019-03-18 13:56:12.382 UTC [viperutil] getKeysRecursively -> DEBU 014[0m Found real value for peer.BCCSP.SW.Hash setting to string SHA2
+[36m2019-03-18 13:56:12.382 UTC [viperutil] unmarshalJSON -> DEBU 015[0m Unmarshal JSON: value is not a string: 256
+[36m2019-03-18 13:56:12.382 UTC [viperutil] getKeysRecursively -> DEBU 016[0m Found real value for peer.BCCSP.SW.Security setting to int 256
+[36m2019-03-18 13:56:12.382 UTC [viperutil] getKeysRecursively -> DEBU 017[0m Found map[string]interface{} value for peer.BCCSP.SW.FileKeyStore
+[36m2019-03-18 13:56:12.382 UTC [viperutil] unmarshalJSON -> DEBU 018[0m Unmarshal JSON: value cannot be unmarshalled: unexpected end of JSON input
+[36m2019-03-18 13:56:12.382 UTC [viperutil] getKeysRecursively -> DEBU 019[0m Found real value for peer.BCCSP.SW.FileKeyStore.KeyStore setting to string 
+[36m2019-03-18 13:56:12.382 UTC [viperutil] EnhancedExactUnmarshalKey -> DEBU 01a[0m map[peer.BCCSP:map[PKCS11:map[Library:<nil> Label:<nil> Pin:<nil> Hash:<nil> Security:<nil> FileKeyStore:map[KeyStore:<nil>]] Default:SW SW:map[FileKeyStore:map[KeyStore:] Hash:SHA2 Security:256]]]
+[36m2019-03-18 13:56:12.386 UTC [bccsp_sw] openKeyStore -> DEBU 01b[0m KeyStore opened at [/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/keystore]...done
+[36m2019-03-18 13:56:12.386 UTC [bccsp] initBCCSP -> DEBU 01c[0m Initialize BCCSP [SW]
+[36m2019-03-18 13:56:12.386 UTC [msp] getPemMaterialFromDir -> DEBU 01d[0m Reading directory /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/signcerts
+[36m2019-03-18 13:56:12.389 UTC [msp] getPemMaterialFromDir -> DEBU 01e[0m Inspecting file /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/signcerts/Admin@org1.dstar.com-cert.pem
+[36m2019-03-18 13:56:12.392 UTC [msp] getPemMaterialFromDir -> DEBU 01f[0m Reading directory /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/cacerts
+[36m2019-03-18 13:56:12.397 UTC [msp] getPemMaterialFromDir -> DEBU 020[0m Inspecting file /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/cacerts/ca.org1.dstar.com-cert.pem
+[36m2019-03-18 13:56:12.400 UTC [msp] getPemMaterialFromDir -> DEBU 021[0m Reading directory /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/admincerts
+[36m2019-03-18 13:56:12.404 UTC [msp] getPemMaterialFromDir -> DEBU 022[0m Inspecting file /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/admincerts/Admin@org1.dstar.com-cert.pem
+[36m2019-03-18 13:56:12.407 UTC [msp] getPemMaterialFromDir -> DEBU 023[0m Reading directory /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/intermediatecerts
+[36m2019-03-18 13:56:12.407 UTC [msp] getMspConfig -> DEBU 024[0m Intermediate certs folder not found at [/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/intermediatecerts]. Skipping. [stat /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/intermediatecerts: no such file or directory]
+[36m2019-03-18 13:56:12.407 UTC [msp] getPemMaterialFromDir -> DEBU 025[0m Reading directory /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/tlscacerts
+[36m2019-03-18 13:56:12.412 UTC [msp] getPemMaterialFromDir -> DEBU 026[0m Inspecting file /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/tlscacerts/tlsca.org1.dstar.com-cert.pem
+[36m2019-03-18 13:56:12.414 UTC [msp] getPemMaterialFromDir -> DEBU 027[0m Reading directory /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/tlsintermediatecerts
+[36m2019-03-18 13:56:12.415 UTC [msp] getMspConfig -> DEBU 028[0m TLS intermediate certs folder not found at [/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/tlsintermediatecerts]. Skipping. [stat /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/tlsintermediatecerts: no such file or directory]
+[36m2019-03-18 13:56:12.415 UTC [msp] getPemMaterialFromDir -> DEBU 029[0m Reading directory /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/crls
+[36m2019-03-18 13:56:12.416 UTC [msp] getMspConfig -> DEBU 02a[0m crls folder not found at [/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/crls]. Skipping. [stat /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/crls: no such file or directory]
+[36m2019-03-18 13:56:12.417 UTC [msp] getMspConfig -> DEBU 02b[0m MSP configuration file not found at [/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/config.yaml]: [stat /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/config.yaml: no such file or directory]
+[36m2019-03-18 13:56:12.418 UTC [msp] newBccspMsp -> DEBU 02c[0m Creating BCCSP-based MSP instance
+[36m2019-03-18 13:56:12.418 UTC [msp] New -> DEBU 02d[0m Creating Cache-MSP instance
+[36m2019-03-18 13:56:12.418 UTC [msp] loadLocaMSP -> DEBU 02e[0m Created new local MSP
+[36m2019-03-18 13:56:12.418 UTC [msp] Setup -> DEBU 02f[0m Setting up MSP instance Org1MSP
+[36m2019-03-18 13:56:12.418 UTC [msp.identity] newIdentity -> DEBU 030[0m Creating identity instance for cert -----BEGIN CERTIFICATE-----
+MIICSTCCAe+gAwIBAgIQJipGal/NBIYa8g7viJnkrTAKBggqhkjOPQQDAjBvMQsw
+CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+YW5jaXNjbzEXMBUGA1UEChMOb3JnMS5kc3Rhci5jb20xGjAYBgNVBAMTEWNhLm9y
+ZzEuZHN0YXIuY29tMB4XDTE5MDMxODEzMjgwMFoXDTI5MDMxNTEzMjgwMFowbzEL
+MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+cmFuY2lzY28xFzAVBgNVBAoTDm9yZzEuZHN0YXIuY29tMRowGAYDVQQDExFjYS5v
+cmcxLmRzdGFyLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABFRIzHQWitTZ
+eZ3m9bT/JJCw99slkE9o5oyjEoDB6nAnug/oDeTP8nOMEb7PAqxP8VSxU9OU5fM1
+KxzenAc34uOjbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcD
+AgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQgif2tL8UJgJgg
+mUYoqE6vRYZzDH/7uUXsvdvhGFZ/3RAwCgYIKoZIzj0EAwIDSAAwRQIhAOjeGTou
+Fa9CCfhtZGY2sXpYEb5xl8cgLlXUMpgXpxv5AiAtBlZMNOx/Y7EBLBmoBSttOw8n
+PGz8Ekurnw/C2hAAYA==
+-----END CERTIFICATE-----
+[36m2019-03-18 13:56:12.419 UTC [msp.identity] newIdentity -> DEBU 031[0m Creating identity instance for cert -----BEGIN CERTIFICATE-----
+MIICEzCCAbmgAwIBAgIQNR23FyAqzpnSRvUiYzucZjAKBggqhkjOPQQDAjBvMQsw
+CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+YW5jaXNjbzEXMBUGA1UEChMOb3JnMS5kc3Rhci5jb20xGjAYBgNVBAMTEWNhLm9y
+ZzEuZHN0YXIuY29tMB4XDTE5MDMxODEzMjgwMFoXDTI5MDMxNTEzMjgwMFowWTEL
+MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+cmFuY2lzY28xHTAbBgNVBAMMFEFkbWluQG9yZzEuZHN0YXIuY29tMFkwEwYHKoZI
+zj0CAQYIKoZIzj0DAQcDQgAEnoeVIgzxaHm17r/TscTBWRr/j6wD+1sJbrkuridQ
+uLxWojucziwBJ88tQq2yqVj5hvd9iKwwg3lL91K6BVYCoKNNMEswDgYDVR0PAQH/
+BAQDAgeAMAwGA1UdEwEB/wQCMAAwKwYDVR0jBCQwIoAgif2tL8UJgJggmUYoqE6v
+RYZzDH/7uUXsvdvhGFZ/3RAwCgYIKoZIzj0EAwIDSAAwRQIhAN1jRG9y38D1yCMR
+oRWyZrIWx3ZXn81Zb66nj8ZF0bbMAiAd0/oxQi7kP+hfwLmtRAoJKBLiGbrtvhcf
+n+ksVJ/yOw==
+-----END CERTIFICATE-----
+[36m2019-03-18 13:56:12.436 UTC [msp.identity] newIdentity -> DEBU 032[0m Creating identity instance for cert -----BEGIN CERTIFICATE-----
+MIICEzCCAbmgAwIBAgIQNR23FyAqzpnSRvUiYzucZjAKBggqhkjOPQQDAjBvMQsw
+CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+YW5jaXNjbzEXMBUGA1UEChMOb3JnMS5kc3Rhci5jb20xGjAYBgNVBAMTEWNhLm9y
+ZzEuZHN0YXIuY29tMB4XDTE5MDMxODEzMjgwMFoXDTI5MDMxNTEzMjgwMFowWTEL
+MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+cmFuY2lzY28xHTAbBgNVBAMMFEFkbWluQG9yZzEuZHN0YXIuY29tMFkwEwYHKoZI
+zj0CAQYIKoZIzj0DAQcDQgAEnoeVIgzxaHm17r/TscTBWRr/j6wD+1sJbrkuridQ
+uLxWojucziwBJ88tQq2yqVj5hvd9iKwwg3lL91K6BVYCoKNNMEswDgYDVR0PAQH/
+BAQDAgeAMAwGA1UdEwEB/wQCMAAwKwYDVR0jBCQwIoAgif2tL8UJgJggmUYoqE6v
+RYZzDH/7uUXsvdvhGFZ/3RAwCgYIKoZIzj0EAwIDSAAwRQIhAN1jRG9y38D1yCMR
+oRWyZrIWx3ZXn81Zb66nj8ZF0bbMAiAd0/oxQi7kP+hfwLmtRAoJKBLiGbrtvhcf
+n+ksVJ/yOw==
+-----END CERTIFICATE-----
+[36m2019-03-18 13:56:12.439 UTC [bccsp_sw] loadPrivateKey -> DEBU 033[0m Loading private key [a11f84af7951c5b8eb5f8e0cc487059986374a527a1ca474c8d64e19a7ae01c7] at [/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.dstar.com/users/Admin@org1.dstar.com/msp/keystore/a11f84af7951c5b8eb5f8e0cc487059986374a527a1ca474c8d64e19a7ae01c7_sk]...
+[36m2019-03-18 13:56:12.443 UTC [msp.identity] newIdentity -> DEBU 034[0m Creating identity instance for cert -----BEGIN CERTIFICATE-----
+MIICEzCCAbmgAwIBAgIQNR23FyAqzpnSRvUiYzucZjAKBggqhkjOPQQDAjBvMQsw
+CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+YW5jaXNjbzEXMBUGA1UEChMOb3JnMS5kc3Rhci5jb20xGjAYBgNVBAMTEWNhLm9y
+ZzEuZHN0YXIuY29tMB4XDTE5MDMxODEzMjgwMFoXDTI5MDMxNTEzMjgwMFowWTEL
+MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+cmFuY2lzY28xHTAbBgNVBAMMFEFkbWluQG9yZzEuZHN0YXIuY29tMFkwEwYHKoZI
+zj0CAQYIKoZIzj0DAQcDQgAEnoeVIgzxaHm17r/TscTBWRr/j6wD+1sJbrkuridQ
+uLxWojucziwBJ88tQq2yqVj5hvd9iKwwg3lL91K6BVYCoKNNMEswDgYDVR0PAQH/
+BAQDAgeAMAwGA1UdEwEB/wQCMAAwKwYDVR0jBCQwIoAgif2tL8UJgJggmUYoqE6v
+RYZzDH/7uUXsvdvhGFZ/3RAwCgYIKoZIzj0EAwIDSAAwRQIhAN1jRG9y38D1yCMR
+oRWyZrIWx3ZXn81Zb66nj8ZF0bbMAiAd0/oxQi7kP+hfwLmtRAoJKBLiGbrtvhcf
+n+ksVJ/yOw==
+-----END CERTIFICATE-----
+[36m2019-03-18 13:56:12.443 UTC [msp] setupSigningIdentity -> DEBU 035[0m Signing identity expires at 2029-03-15 13:28:00 +0000 UTC
+[36m2019-03-18 13:56:12.443 UTC [msp] Validate -> DEBU 036[0m MSP Org1MSP validating identity
+[36m2019-03-18 13:56:12.444 UTC [msp] GetDefaultSigningIdentity -> DEBU 037[0m Obtaining default signing identity
+[36m2019-03-18 13:56:12.444 UTC [grpc] DialContext -> DEBU 038[0m parsed scheme: ""
+[36m2019-03-18 13:56:12.444 UTC [grpc] DialContext -> DEBU 039[0m scheme "" not registered, fallback to default scheme
+[36m2019-03-18 13:56:12.444 UTC [grpc] watcher -> DEBU 03a[0m ccResolverWrapper: sending new addresses to cc: [{orderer.dstar.com:7050 0  <nil>}]
+[36m2019-03-18 13:56:12.444 UTC [grpc] switchBalancer -> DEBU 03b[0m ClientConn switching balancer to "pick_first"
+[36m2019-03-18 13:56:12.444 UTC [grpc] HandleSubConnStateChange -> DEBU 03c[0m pickfirstBalancer: HandleSubConnStateChange: 0xc000252570, CONNECTING
+Error: failed to create deliver client: orderer client failed to connect to orderer.dstar.com:7050: failed to create new connection: context deadline exceeded
